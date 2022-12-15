@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class masiv {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner inp = new Scanner(System.in);
+		
+		System.out.print("Vuvedete broi elementi na masiva:");
+		
+		int n = inp.nextInt();
+		double arr[] = new double[n];
+		
+		input(arr);
+		output(arr);
+		
+		System.out.print("Po-golemite ot srednoto ar. sa " + pogol(arr) + " na broi.");
+
+	}
+
+	public static void input(double []arr) {
+		Scanner inp = new Scanner(System.in);
+		
+		for(int i = 0 ; i < arr.length ; i++ ) {
+			System.out.print("arr[" + i + "]=");
+			arr[i] = inp.nextInt();
+		}
+	}
+	
+	public static double srar(double []arr) {
+		double srar = 0;
+		
+		for(int i = 0 ; i < arr.length ; i++ ) {
+			srar += arr[i];
+		}
+		srar = srar / arr.length;
+		
+		return srar;
+	}
+	
+	public static int pogol(double []arr) {
+		int pogol = 0;
+		for(int i = 0 ; i < arr.length ; i++ ) {
+			if(arr[i] > srar(arr))pogol++;
+		}
+		return pogol;
+	}
+	
+	public static void output(double []arr) {
+		for(int i = 0 ; i < arr.length ; i++ ) {
+			System.out.println("arr[" + i + "]=" + arr[i]);
+		}
+	}
+	
+}
