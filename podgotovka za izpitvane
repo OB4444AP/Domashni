@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class podgotovkazaizpitvanemasiv {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner inp = new Scanner(System.in);
+		
+		int n = inp.nextInt();
+		int arr[] = new int [n];
+		
+		input(arr);
+		output(arr);
+		neotr(arr);
+		sort(arr);
+	}
+	
+	public static void input(int []arr) {
+		Scanner inp = new Scanner(System.in);
+		
+		for(int i = 0 ; i < arr.length ; i++) {
+			arr[i] = inp.nextInt();
+		}
+	}
+	
+	public static void output(int []arr) {
+		for(int i = 0 ; i < arr.length ; i++) {
+			System.out.println(arr[i]);
+		}
+	}
+	
+	public static void neotr(int []arr) {
+		int neotr = -1;
+		int sum = 0;
+		
+		for(int i = 0 ; i < arr.length ; i++) {
+			if(arr[i] >= 0) {
+				neotr = arr[i];
+				if(neotr >= 0)break;
+			}
+			else sum = sum + arr[i];
+			}
+		System.out.println("Purviq neotricatelen element e: " + neotr);
+		System.out.println("Sumata na el. predi purviq neotricatelen e: " + sum);
+		}
+	
+	public static void sort(int []arr) {
+		int n = arr.length;
+		int temp = 0;
+		
+		for(int i = 0 ; i < n ; i++) {
+			for(int j = 1 ; j < (n-1) ; j++) {
+				if(arr[j] < arr[j-1]) {
+					temp = arr[j];
+					arr[j] = arr[j-1];
+					arr[j-1] = temp;
+				}
+			}
+		}
+		for(int i = 0 ; i < arr.length ; i++) {
+			System.out.println(arr[i]);
+		}
+	}
+}
+
