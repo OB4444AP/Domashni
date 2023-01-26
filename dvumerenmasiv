@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class dvumerenmasiv {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner inp = new Scanner(System.in);
+		
+		int n = inp.nextInt();
+		
+		double a[][] = new double [n][n];
+		
+		input(a);
+		avg(a);
+		minmax(a);
+		output(a);
+	}
+	
+	public static void input(double a[][]) {
+		Scanner inp = new Scanner(System.in);
+		
+		for(int i = 0 ; i < a.length ; i++) {
+			for(int j = 0 ; j < a.length ; j++) {
+				a[i][j] = inp.nextInt();
+			}
+		}
+	}
+	
+	public static void output(double a[][]) {
+		for(int i = 0 ; i < a.length ; i++) {
+			for(int j = 0 ; j < a.length ; j++) {
+				System.out.print("a[" + i + "][" + j + "]=" + a[i][j] + " ");
+			}
+			System.out.println("");
+		}
+	}
+	
+	public static void avg(double a[][]) {
+		double br = 0;
+		double sum = 0;
+		
+		for(int i = 0 ; i < a.length ; i++) {
+			for(int j = 0 ; j < a.length ; j++) {
+				if(a[i][j] > 0) {
+					br ++;
+					sum = sum + a[i][j];
+				}
+			}
+		}
+		double avg = sum / br;
+		System.out.println("Sreednoto e " + avg);
+	}
+	
+	public static void minmax(double a[][]) {
+		double min = a[0][0];
+		double max = a[0][0];
+		
+		for(int i = 0 ; i < a.length ; i++) {
+			for(int j = 0 ; j < a.length ; j++) {
+				if(a[i][j] > max)max = a[i][j];
+				if(a[i][j] < min)min = a[i][j];
+			}
+		}
+		System.out.println("Sumata e " + (min + max));
+	}
+
+}
