@@ -1,0 +1,144 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class patriotichentest extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txta;
+	private JTextField txtb;
+	private JTextField txtc;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					patriotichentest frame = new patriotichentest();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public patriotichentest() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 467, 228);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "\u0422\u0440\u0438\u044A\u0433\u044A\u043B\u043D\u0438\u043A", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(10, 11, 432, 167);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lbl = new JLabel("Въведете страните в cm:");
+		lbl.setBounds(10, 22, 148, 26);
+		panel.add(lbl);
+		
+		JLabel lbla = new JLabel("a=");
+		lbla.setBounds(191, 28, 46, 14);
+		panel.add(lbla);
+		
+		txta = new JTextField();
+		txta.setBounds(211, 25, 86, 20);
+		panel.add(txta);
+		txta.setColumns(10);
+		
+		JLabel lblb = new JLabel("b=");
+		lblb.setBounds(191, 61, 46, 14);
+		panel.add(lblb);
+		
+		txtb = new JTextField();
+		txtb.setColumns(10);
+		txtb.setBounds(211, 58, 86, 20);
+		panel.add(txtb);
+		
+		JLabel lblc = new JLabel("c=");
+		lblc.setBounds(191, 98, 46, 14);
+		panel.add(lblc);
+		
+		txtc = new JTextField();
+		txtc.setColumns(10);
+		txtc.setBounds(211, 95, 86, 20);
+		panel.add(txtc);
+		
+		final JLabel lblP = new JLabel("P=");
+		lblP.setBounds(10, 55, 148, 26);
+		panel.add(lblP);
+		
+		final JLabel lblS = new JLabel("S=");
+		lblS.setBounds(10, 92, 148, 26);
+		panel.add(lblS);
+		
+		final JLabel lbltr = new JLabel("Триъгълникът е");
+		lbltr.setBounds(10, 129, 406, 26);
+		panel.add(lbltr);
+		
+		JButton btnpr = new JButton("Пресметни");
+		btnpr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double a, b , c, p, S;
+				a=Double.parseDouble(txta.getText());
+				b=Double.parseDouble(txtb.getText());
+				c=Double.parseDouble(txtc.getText());
+				
+				p = (a+b+c)/2;
+				S = Math.sqrt(p*(p-a)*(p-b)*(p-c));
+				S = Math.round(S *100)/100.0;
+
+				lblP.setText("P=" + (a+b+c));
+				lblS.setText("S=" + S);
+				
+				if(a != b && b != c)lbltr.setText("Триъгълникът е разностранен");
+				else if(a == b && b == c)lbltr.setText("Триъгълникът е равностранен");
+				else lbltr.setText("Триъгълникът е равнобедрен");
+			}
+		});
+		btnpr.setBounds(307, 22, 109, 23);
+		panel.add(btnpr);
+		
+		JButton btniz = new JButton("Изчисти");
+		btniz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txta.setText("");
+				txtb.setText("");
+				txtc.setText("");
+				lblP.setText("P=");
+				lblS.setText("S=");
+				lbltr.setText("Триъгълникът е");
+			}
+		});
+		btniz.setBounds(307, 59, 109, 23);
+		panel.add(btniz);
+		
+		JButton btnztv = new JButton("Затвори");
+		btnztv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnztv.setBounds(307, 96, 109, 23);
+		panel.add(btnztv);
+	}
+}
