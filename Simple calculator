@@ -1,0 +1,154 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+
+public class calculator extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txta;
+	private JTextField txtb;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					calculator frame = new calculator();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public calculator() {
+		setTitle("Simple calculator\r\n");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 425, 251);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lbla = new JLabel("A:");
+		lbla.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lbla.setBounds(58, 11, 29, 35);
+		contentPane.add(lbla);
+		
+		JLabel lblB = new JLabel("B:");
+		lblB.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblB.setBounds(229, 11, 29, 35);
+		contentPane.add(lblB);
+		
+		txta = new JTextField();
+		txta.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txta.setBounds(82, 11, 93, 33);
+		contentPane.add(txta);
+		txta.setColumns(10);
+		
+		txtb = new JTextField();
+		txtb.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtb.setBounds(256, 11, 93, 33);
+		contentPane.add(txtb);
+		txtb.setColumns(10);
+		
+		final JLabel lblres = new JLabel("Резултат");
+		lblres.setHorizontalAlignment(SwingConstants.CENTER);
+		lblres.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblres.setBounds(40, 153, 339, 48);
+		contentPane.add(lblres);
+		
+		JButton btnplus = new JButton("A + B");
+		btnplus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double a = Double.parseDouble(txta.getText());
+				double b = Double.parseDouble(txtb.getText());
+				
+				lblres.setText("Резултат: " +(a+b));
+			}
+		});
+		btnplus.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnplus.setBounds(40, 61, 100, 35);
+		contentPane.add(btnplus);
+		
+		JButton btnminus = new JButton("A - B");
+		btnminus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double a = Double.parseDouble(txta.getText());
+				double b = Double.parseDouble(txtb.getText());
+				
+				lblres.setText("Резултат: " +(a-b));
+			}
+		});
+		btnminus.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnminus.setBounds(160, 61, 100, 35);
+		contentPane.add(btnminus);
+		
+		JButton btnmultiply = new JButton("A * B");
+		btnmultiply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double a = Double.parseDouble(txta.getText());
+				double b = Double.parseDouble(txtb.getText());
+				
+				lblres.setText("Резултат: " +(a*b));
+			}
+		});
+		btnmultiply.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnmultiply.setBounds(279, 61, 100, 35);
+		contentPane.add(btnmultiply);
+		
+		JButton btndivide = new JButton("A / B");
+		btndivide.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double a = Double.parseDouble(txta.getText());
+				double b = Double.parseDouble(txtb.getText());
+				
+				lblres.setText("Резултат: " +(a/b));
+			}
+		});
+		btndivide.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btndivide.setBounds(40, 107, 100, 35);
+		contentPane.add(btndivide);
+		
+		JButton btnpow = new JButton("A ^ B");
+		btnpow.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {double a = Double.parseDouble(txta.getText());
+			double b = Double.parseDouble(txtb.getText());
+			
+			lblres.setText("Резултат: " +(Math.pow(a, b)));
+			}
+		});
+		btnpow.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnpow.setBounds(160, 107, 100, 35);
+		contentPane.add(btnpow);
+		
+		JButton btnavg = new JButton("AVE");
+		btnavg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {double a = Double.parseDouble(txta.getText());
+			double b = Double.parseDouble(txtb.getText());
+			
+			lblres.setText("Резултат: " +((a+b)/2));
+			}
+		});
+		btnavg.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnavg.setBounds(279, 107, 100, 35);
+		contentPane.add(btnavg);
+		
+	}
+}
