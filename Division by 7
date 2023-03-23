@@ -1,0 +1,112 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.awt.event.ActionEvent;
+
+public class Division extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtn;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Division frame = new Division();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Division() {
+		setTitle("Division by 7");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 240);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lbl = new JLabel("Въведете цяло число");
+		lbl.setBounds(10, 11, 144, 26);
+		contentPane.add(lbl);
+		
+		txtn = new JTextField();
+		txtn.setBounds(149, 14, 86, 20);
+		contentPane.add(txtn);
+		txtn.setColumns(10);
+		
+		final JLabel lbl7 = new JLabel("Целите числа делящи на 7 са:");
+		lbl7.setBounds(10, 48, 414, 26);
+		contentPane.add(lbl7);
+		
+		final JLabel lblsum = new JLabel("Сумата им е:");
+		lblsum.setBounds(10, 85, 414, 26);
+		contentPane.add(lblsum);
+		
+		final JLabel lblp = new JLabel("Произведението им е:");
+		lblp.setBounds(10, 122, 414, 26);
+		contentPane.add(lblp);
+		
+		JButton btncalc = new JButton("Пресметни");
+		btncalc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int n = Integer.parseInt(txtn.getText());
+				int sum = 0 , pr = 1 , br = 0;
+				int arr[] = new int[n / 7];
+				
+				for(int i = 1 ; i <= n ; i++) {
+					if(i % 7 == 0) {
+						arr[br] = i;
+						sum += i;
+						pr = pr * i;
+						br++;
+					}
+				}
+				lbl7.setText("Целите числа делящи на 7 са: " + Arrays.toString(arr));
+				lblsum.setText("Сумата им е: " + sum);
+				lblp.setText("Произведението им е: " + pr);
+			}
+		});
+		btncalc.setBounds(10, 165, 104, 23);
+		contentPane.add(btncalc);
+		
+		JButton btncl = new JButton("Изчисти");
+		btncl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtn.setText("");
+				lbl7.setText("Целите числа делящи на 7 са: ");
+				lblsum.setText("Сумата им е: ");
+				lblp.setText("Произведението им е: ");
+			}
+		});
+		btncl.setBounds(167, 165, 104, 23);
+		contentPane.add(btncl);
+		
+		JButton btnclo = new JButton("Затвори");
+		btnclo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnclo.setBounds(320, 165, 104, 23);
+		contentPane.add(btnclo);
+	}
+}
