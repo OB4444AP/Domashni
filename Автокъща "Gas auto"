@@ -1,0 +1,146 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.border.TitledBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class avtokushta extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					avtokushta frame = new avtokushta();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public avtokushta() {
+		
+		String[] marka = {"Peugeot" , "Volkswagen" , "Seat" , "Ford" , "Fiat" , "Mazda"};
+		String[] cvetove = {"сребрист" , "черен" , "бял" , "червен" , "син"};
+		String[] upotreba = {"чисто нова" , "втора ръка"};
+		
+		setTitle("Автокъща \"Gas auto\"");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 400, 277);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Марка:");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel.setBounds(96, 100, 49, 23);
+		contentPane.add(lblNewLabel);
+		
+		final JComboBox comboBoxMarka = new JComboBox(marka);
+		comboBoxMarka.setBounds(142, 101, 109, 22);
+		contentPane.add(comboBoxMarka);
+		
+		JLabel lblNewLabel_1 = new JLabel("Цвят:");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(96, 134, 49, 23);
+		contentPane.add(lblNewLabel_1);
+		
+		final JComboBox comboBoxCvqt = new JComboBox(cvetove);
+		comboBoxCvqt.setBounds(131, 135, 109, 22);
+		contentPane.add(comboBoxCvqt);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Употреба:");
+		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_1_1.setBounds(96, 168, 72, 23);
+		contentPane.add(lblNewLabel_1_1);
+		
+		final JComboBox comboBoxUpotreba = new JComboBox(upotreba);
+		comboBoxUpotreba.setBounds(160, 169, 91, 22);
+		contentPane.add(comboBoxUpotreba);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "\u041E\u0442\u0441\u0442\u044A\u043F\u043A\u0438", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(10, 11, 357, 78);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("За всеки червен екземпляр - 10% отстъпка");
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_2.setBounds(10, 21, 265, 26);
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("За всеки екземпляр, който е втора ръка - 10% отстъпка");
+		lblNewLabel_2_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNewLabel_2_1.setBounds(10, 47, 337, 26);
+		panel.add(lblNewLabel_2_1);
+		
+		JButton btnNewButton = new JButton("Поръчай");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double pcena = 0, cena = 0;
+				String marka = (String)comboBoxMarka.getSelectedItem();
+				String cvqt = (String)comboBoxCvqt.getSelectedItem();
+				String upotreba = (String)comboBoxUpotreba.getSelectedItem();
+				
+				switch(marka) {
+				case "Peugeot" : pcena = 20000;
+				break;
+				
+				case "Volkswagen" : pcena = 18000;
+				break;
+				
+				case "Seat" : pcena = 20000;
+				break;
+				
+				case "Ford" : pcena = 22000;
+				break;
+				
+				case "Fiat" : pcena = 15000;
+				break;
+				
+				case "Mazda" : pcena = 25000;
+				break;
+				}
+				cena = pcena;
+				if(cvqt == "червен")cena = pcena - pcena * 0.1;
+				if(upotreba == "втора ръка")cena = cena - pcena * 0.1;
+				
+				JOptionPane.showMessageDialog(null, "Успешно си поръчахте кола с марка " + marka + ", която е с " + cvqt + " цвят, " + upotreba + " на цена от " + cena + " лева.");
+			}
+		});
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		btnNewButton.setBounds(96, 202, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Затвори");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(195, 202, 89, 23);
+		contentPane.add(btnNewButton_1);
+	}
+}
